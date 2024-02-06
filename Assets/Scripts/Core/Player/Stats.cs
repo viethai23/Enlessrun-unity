@@ -48,5 +48,11 @@ namespace Yuki.NPlayer
         }
         public void IncreaseHealth(float amount) => CurrentHealth += amount;
         public void DecreaseHealth(float amount) => CurrentHealth -= amount;
+
+        public void IncreaseMaxHealth()
+        {
+            _maxHealth++;
+            _uiController.SetMaxHealth(_maxHealth);
+        }
     }
 }

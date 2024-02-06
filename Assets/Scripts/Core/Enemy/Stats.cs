@@ -43,7 +43,7 @@ namespace Yuki.NEnemy
 
         public void Init()
         {
-            CurrentHealth = _maxHealth;
+            CurrentHealth = _maxHealth * GameManager.Instance.Level;
             _uiController.SetMaxHealth(_maxHealth);
         }
         public void IncreaseHealth(float amount) => CurrentHealth += amount;

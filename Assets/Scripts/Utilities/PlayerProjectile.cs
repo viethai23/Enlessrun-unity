@@ -9,7 +9,7 @@ namespace Yuki.NPlayer
 {
     public class PlayerProjectile : Projectile
     {
-        public event Action<GameObject> OnHitEnemy;
+        public event Action<GameObject, float> OnHitEnemy;
         private bool _isHitEnemy;
         public override void Awake()
         {
@@ -27,7 +27,7 @@ namespace Yuki.NPlayer
                 if (collision.gameObject.CompareTag("Enemy"))
                 {
                     _isHitEnemy = true;
-                    OnHitEnemy?.Invoke(collision.gameObject);
+                    OnHitEnemy?.Invoke(collision.gameObject, _data.DamageAdd);
                     Destroy(gameObject);
                 }
             }

@@ -12,8 +12,10 @@ namespace Yuki
     {
         [SerializeField] private float _speed;
         [SerializeField] private float _maxExistTime;
+        [SerializeField] private float _damageAdd;
 
         public float Speed => _speed;
         public float MaxExistTime => _maxExistTime;
+        public float DamageAdd => _damageAdd;
     }
 }
