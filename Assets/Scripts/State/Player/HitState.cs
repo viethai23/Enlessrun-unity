@@ -24,6 +24,8 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
+            player.Movement.SetVelocityX(0);
+            player.Movement.SetGravity(player.Data.FallGravity * player.Data.FastFallGravityMutiplier * 100);
             player.Event.OnAnimationFinished += OnAnimationFinished;
         }
 

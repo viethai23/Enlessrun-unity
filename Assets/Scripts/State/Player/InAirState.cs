@@ -7,14 +7,14 @@ using UnityEngine;
 
 namespace Yuki.NPlayer
 {
-    public class PlayerInAirState : PlayerState
+    public class InAirState : PlayerState
     {
         protected bool _jumpInput;
         protected bool _dashInput;
         protected bool _isGrounded;
         protected bool _attackInput;
         protected float _yInput;
-        public PlayerInAirState(Actor actor, string animName) : base(actor, animName)
+        public InAirState(Actor actor, string animName) : base(actor, animName)
         {
         }
 

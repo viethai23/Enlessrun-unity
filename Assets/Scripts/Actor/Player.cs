@@ -22,7 +22,7 @@ namespace Yuki.NPlayer
         //State
         public RunState RunState { get; private set; }
         public JumpState JumpState { get; private set; }
-        public PlayerFallState FallState { get; private set; }
+        public FallState FallState { get; private set; }
         public QuickFallState QuickFallState { get; private set; }
         public PlayerDashState DashState { get; private set; }
         public AttackState AttackState { get; private set; }
@@ -35,7 +35,7 @@ namespace Yuki.NPlayer
 
             RunState = new RunState(this, "run");
             JumpState = new JumpState(this, "jump");
-            FallState = new PlayerFallState(this, "fall");
+            FallState = new FallState(this, "fall");
             QuickFallState = new QuickFallState(this, "quickFall");
             DashState = new PlayerDashState(this, "dash");
             AttackState = new AttackState(this, "attack");

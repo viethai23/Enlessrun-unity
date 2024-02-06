@@ -22,10 +22,11 @@ namespace Yuki.NEnemy
             }
         }
 
-        public override void Awake()
-        {
-            base.Awake();
+        private UIManager _uiController;
 
+        private void Start()
+        {
+            _uiController = _core.GetCoreComponent<UIManager>();
             Init();
         }
 
@@ -33,13 +34,18 @@ namespace Yuki.NEnemy
         {
             base.LogicUpdate();
 
+            _uiController.SetCurrentHealth(CurrentHealth);
             if (_currentHealth <= 0f)
             {
                 OnEnemyDie?.Invoke();
             }
         }
 
-        public void Init() => CurrentHealth = _maxHealth;
+        public void Init()
+        {
+            CurrentHealth = _maxHealth;
+            _uiController.SetMaxHealth(_maxHealth);
+        }
         public void IncreaseHealth(float amount) => CurrentHealth += amount;
         public void DecreaseHealth(float amount) => CurrentHealth -= amount;
     }

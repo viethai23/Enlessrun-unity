@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Yuki.NPlayer
 {
-    public class QuickFallState : PlayerInAirState
+    public class QuickFallState : InAirState
     {
         public QuickFallState(Actor actor, string animName) : base(actor, animName)
         {
@@ -17,6 +17,7 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
+            player.Movement.SetVelocityZero();
             player.Movement.SetGravity(player.Data.DefaultGravity * player.Data.FastFallGravityMutiplier);
         }
                                             

@@ -25,6 +25,7 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
+            player.Movement.SetGravity(player.Data.DefaultGravity);
             CheckInput();
             Jump();
         }

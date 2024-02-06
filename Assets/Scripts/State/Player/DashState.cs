@@ -12,6 +12,9 @@ namespace Yuki.NPlayer
         private float _dashStartTime;
         private float _lastDashTime = -100f;
         private bool _isGrounded;
+        private float _yInput;
+        private bool _attackInput;
+        private bool _jumpInput;
 
         public PlayerDashState(Actor actor, string animName) : base(actor, animName)
         {
@@ -43,6 +46,7 @@ namespace Yuki.NPlayer
 
             if(!isExitingState)
             {
+                CheckInput();
                 PlaceAfterImage();
                 if(CheckIfFinishedDash())
                 {
@@ -56,6 +60,18 @@ namespace Yuki.NPlayer
                         player.FSM.ChangeState(player.FallState);
                     }
                 }
+                else if(!_isGrounded && _yInput < 0)
+                {
+                    player.FSM.ChangeState(player.QuickFallState);
+                }
+                else if(_attackInput)
+                {
+                    player.FSM.ChangeState(player.AttackState);
+                }
+                else if(_jumpInput && player.JumpState.CanJump())
+                {
+                    player.FSM.ChangeState(player.JumpState);
+                }
             }
         }
 
@@ -64,10 +80,18 @@ namespace Yuki.NPlayer
             base.Exit();
 
             player.DamageReceiver.CanDamage = true;
+            player.Movement.SetVelocityZero();
         }
 
         private bool CheckIfFinishedDash() => Time.time >= _dashStartTime + player.Data.DashDuration;
 
         public bool CanDash() => Time.time >= _lastDashTime + player.Data.DashCooldown;
+
+        private void CheckInput()
+        {
+            _yInput = player.Input.MovementInput.y;
+            _attackInput = player.Input.AttackInput;
+            _jumpInput = player.Input.JumpInput;
+        }
     }
 }

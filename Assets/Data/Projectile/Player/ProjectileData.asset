@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ProjectileData
   m_EditorClassIdentifier: 
   _speed: 15
-  _maxExistTime: 2
+  _maxExistTime: 0.8

@@ -14,16 +14,13 @@ namespace Yuki.NPlayer
         private bool _canDamage;
         public bool CanDamage { get => _canDamage; set => _canDamage = value; }
         private Stats _stats;
-        public Stats Stats
-        {
-            get => _stats ? _stats : _core.GetCoreComponent<Stats>();
-        }
         public event Action OnTakeDamage;
 
         public override void Awake()
         {
             base.Awake();
 
+            _stats = _core.GetCoreComponent<Stats>();
             _canDamage = true;
         }
         public void Damage(float damage)
@@ -31,7 +28,7 @@ namespace Yuki.NPlayer
             Debug.Log("Player is attacked!");
             if(_canDamage)
             {
-                Stats.DecreaseHealth(damage);
+                _stats.DecreaseHealth(damage);
                 OnTakeDamage?.Invoke();
             }
         }

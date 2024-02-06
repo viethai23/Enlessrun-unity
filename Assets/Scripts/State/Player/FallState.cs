@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace Yuki.NPlayer
 {
-    public class PlayerFallState : PlayerInAirState
+    public class FallState : InAirState
     {
         private float _coyoteTimeStart;
         
-        public PlayerFallState(Actor actor, string animName) : base(actor, animName)
+        public FallState(Actor actor, string animName) : base(actor, animName)
         {
         }
 
