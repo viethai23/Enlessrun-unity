@@ -24,8 +24,10 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
+            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.HitFXSound);
+
             player.Movement.SetVelocityX(0);
-            player.Movement.SetGravity(player.Data.FallGravity * player.Data.FastFallGravityMutiplier * 100);
+            //player.Movement.SetGravity(player.Data.FallGravity * player.Data.FastFallGravityMutiplier * 100);
             player.Event.OnAnimationFinished += OnAnimationFinished;
         }
 
@@ -44,6 +46,8 @@ namespace Yuki.NPlayer
         public override void Exit()
         {
             base.Exit();
+
+            SoundManager.Instance.StopFXSound(player.Sound.Data.HitFXSound);
 
             player.Event.OnAnimationFinished -= OnAnimationFinished;
         }

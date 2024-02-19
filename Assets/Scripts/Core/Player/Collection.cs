@@ -3,51 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Yuki.NPlayer
 {
     public class Collection : CoreComp
     {
         private Inventory _inventory;
+        [SerializeField] private List<Collectable> _collectables;
+        [SerializeField] private CoinCollection _coinCollection;
 
         private void Start()
         {
             _inventory = _core.GetCoreComponent<Inventory>();
+
+            foreach(Collectable collectable in Enum.GetValues(typeof(Collectable)))
+            {
+                _collectables.Add(collectable);
+            }
+
+            if(_coinCollection.OnUIChange == null)
+            {
+                _coinCollection.OnUIChange += _inventory.IncreaseCoinValue;
+            }
+            
         }
 
         private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
         {
-            if(collision.gameObject.CompareTag(Collectable.Sliver.ToString()))
+            foreach (Collectable collectable in _collectables)
             {
-                _inventory.IncreaseCoinValue((int)Collectable.Sliver);
+                if (collision.gameObject.CompareTag(collectable.ToString()))
+                {
+                    _coinCollection.AddCoin(collision.transform.position, (int)collectable);
+                    Destroy(collision.gameObject);
+                }
             }
-            else if (collision.gameObject.CompareTag(Collectable.Gold.ToString()))
+        }
+
+        public void AddCoin(Vector3 position, int amount)
+        {
+            _coinCollection.AddCoin(position, amount);
+        }
+
+        private void OnDisable()
+        {
+            if(_collectables.Count > 0)
             {
-                _inventory.IncreaseCoinValue((int)Collectable.Gold);
+                _collectables.Clear();
             }
-            else if (collision.gameObject.CompareTag(Collectable.Ruby.ToString()))
+            if (_coinCollection.OnUIChange != null)
             {
-                _inventory.IncreaseCoinValue((int)Collectable.Ruby);
-            }
-            else if (collision.gameObject.CompareTag(Collectable.YellowDiamond.ToString()))
-            {
-                _inventory.IncreaseCoinValue((int)Collectable.YellowDiamond);
-            }
-            else if (collision.gameObject.CompareTag(Collectable.BlueDiamond.ToString()))
-            {
-                _inventory.IncreaseCoinValue((int)Collectable.BlueDiamond);
-            }
-            else if (collision.gameObject.CompareTag(Collectable.CyaDiamond.ToString()))
-            {
-                _inventory.IncreaseCoinValue((int)Collectable.CyaDiamond);
-            }
-            else if (collision.gameObject.CompareTag(Collectable.GreenDiamond.ToString()))
-            {
-                _inventory.IncreaseCoinValue((int)Collectable.GreenDiamond);
-            }
-            else if (collision.gameObject.CompareTag(Collectable.RedDiamond.ToString()))
-            {
-                _inventory.IncreaseCoinValue((int)Collectable.RedDiamond);
+                _coinCollection.OnUIChange -= _inventory.IncreaseCoinValue;
             }
         }
     }

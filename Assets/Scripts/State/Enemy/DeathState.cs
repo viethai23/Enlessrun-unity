@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Yuki.NPlayer;
 
 namespace Yuki.NEnemy
 {
@@ -18,13 +19,15 @@ namespace Yuki.NEnemy
             base.Enter();
 
             enemy.SetDangerousMark(false);
+
             enemy.Event.OnAnimationFinished += OnAnimationFinished;
         }
 
         private void OnAnimationFinished()
         {
-            Debug.Log("Enemy died");
-            Destroy(enemy.gameObject);
+            Player.Instance.Collection.AddCoin(enemy.transform.position, enemy.Data.Value);
+
+            enemy.gameObject.SetActive(false);
         }
 
         public override void Exit()

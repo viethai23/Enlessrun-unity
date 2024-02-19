@@ -18,6 +18,7 @@ namespace Yuki.NEnemy
         {
             base.Enter();
 
+            SoundManager.Instance.CreatePlayFXSound(enemy.Sound.Data.AttackFXSound);
             enemy.Event.OnAnimationFinished += OnAnimationFinished;
             enemy.Event.OnAttack += OnAttack;
             _attackStartTime = Time.time;
@@ -25,28 +26,19 @@ namespace Yuki.NEnemy
 
         private void OnAnimationFinished()
         {
-            ChangeToNormalState();
+            enemy.FSM.ChangeState(enemy.IdleState);
         }
 
         protected virtual void OnAttack() { }
 
-        protected void ChangeToNormalState()
-        {
-            if (enemy.Data.CanMove)
-            {
-                enemy.FSM.ChangeState(enemy.MoveState);
-            }
-            else
-            {
-                enemy.FSM.ChangeState(enemy.IdleState);
-            }
-        }
 
         public bool CanAttack() => Time.time >= _attackStartTime + enemy.Data.AttackCooldown;
 
         public override void Exit()
         {
             base.Exit();
+
+            SoundManager.Instance.StopFXSound(enemy.Sound.Data.AttackFXSound);
 
             enemy.Event.OnAnimationFinished -= OnAnimationFinished;
             enemy.Event.OnAttack -= OnAttack;

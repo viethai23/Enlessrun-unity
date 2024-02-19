@@ -33,7 +33,10 @@ namespace Yuki.NEnemy
                 OnHitPlayer?.Invoke(collision.gameObject);
                 Destroy(gameObject);
             }
-               
+            else if(collision.gameObject.CompareTag("PlayerProjectile"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

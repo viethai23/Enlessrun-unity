@@ -46,7 +46,6 @@ namespace Yuki
                 GameObject firstPartSpawned = _spawnedParts.Peek();
                 if (_player.transform.position.x - firstPartSpawned.transform.position.x > _distanceBetweenDestroy)
                 {
-                    Debug.Log("Destroy");
                     DestroyImmediate(firstPartSpawned);
                     _spawnedParts.Dequeue();
                 }

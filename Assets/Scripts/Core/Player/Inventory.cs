@@ -15,12 +15,12 @@ namespace Yuki.NPlayer
         private float _coinValue;
         private int _currentWeapon;
 
-        private UIManager _uiController;
+        private UI _uiController;
         public event Action OnCoinNotEnough;
         
         private void Start()
         {
-            _uiController = _core.GetCoreComponent<UIManager>();
+            _uiController = _core.GetCoreComponent<UI>();
             Init();
         }
 
@@ -32,13 +32,13 @@ namespace Yuki.NPlayer
             _uiController.SetCoinValue(_coinValue);
         }
 
-        public void IncreaseCoinValue(float v)
+        public void IncreaseCoinValue(int v)
         {
             _coinValue += v;
             _uiController.SetCoinValue(_coinValue);
         }
 
-        public void DecreaseCoinValue(float v)
+        public void DecreaseCoinValue(int v)
         {
             if(_coinValue < v)
             {

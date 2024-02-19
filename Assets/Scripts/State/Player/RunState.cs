@@ -28,6 +28,8 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
+            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.RunFXSound);
+
             player.Movement.SetGravity(player.Data.DefaultGravity);
             player.JumpState.ResetAmountOfJump();
             CheckInput();
@@ -39,6 +41,7 @@ namespace Yuki.NPlayer
 
             if (!isExitingState)
             {
+                SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.RunFXSound);
                 CheckInput();
                 player.Movement.SetVelocityX(player.Data.MoveSpeed);
 
@@ -59,6 +62,13 @@ namespace Yuki.NPlayer
                     player.FSM.ChangeState(player.FallState);
                 }
             }
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+
+            SoundManager.Instance.StopFXSound(player.Sound.Data.RunFXSound);
         }
 
         private void CheckInput()

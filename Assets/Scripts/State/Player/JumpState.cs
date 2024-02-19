@@ -25,6 +25,7 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
+            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.JumpFXSound);
             player.Movement.SetGravity(player.Data.DefaultGravity);
             CheckInput();
             Jump();
@@ -60,6 +61,13 @@ namespace Yuki.NPlayer
                     player.FSM.ChangeState(player.QuickFallState);
                 }
             }
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+
+            SoundManager.Instance.StopFXSound(player.Sound.Data.JumpFXSound);
         }
 
         private void CheckInput()

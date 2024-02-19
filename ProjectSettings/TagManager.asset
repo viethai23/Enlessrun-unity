@@ -5,6 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Sliver
+  - Gold
+  - Ruby
+  - YellowDiamond
+  - BlueDiamond
+  - CyaDiamond
+  - GreenDiamond
+  - RedDiamond
+  - PlayerProjectile
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -56,4 +66,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3089368691
+    locked: 0
+  - name: UI
+    uniqueID: 55908487
     locked: 0

@@ -8,13 +8,13 @@ namespace Yuki
 {
     public enum Collectable
     {
-        Sliver = 10,
-        Gold = 15,
-        Ruby = 30,
-        YellowDiamond = 25,
-        BlueDiamond = 30,
-        CyaDiamond = 35,
-        GreenDiamond = 40,
-        RedDiamond = 50
+        Sliver = 1,
+        Gold = 2,
+        Ruby = 5,
+        YellowDiamond = 2,
+        BlueDiamond = 3,
+        CyaDiamond = 4,
+        GreenDiamond = 5,
+        RedDiamond = 6
     }
 }

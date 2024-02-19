@@ -7,6 +7,7 @@ namespace Yuki.NPlayer
 {
     public class Player : Actor
     {
+        public static Player Instance;
         [SerializeField] private PlayerData _data; public PlayerData Data => _data;
         public Input Input { get; private set; }
 
@@ -18,6 +19,9 @@ namespace Yuki.NPlayer
         public CollisionSenses CollisionSenses => _collisionSenses;
         private Movement _movement; public Movement Movement => _movement;
         private RangeAttack _rangeAttack; public RangeAttack RangeAttack => _rangeAttack;
+        private Collection _collection; public Collection Collection => _collection;
+        private Inventory _inventory; public Inventory Inventory => _inventory;
+        private Sound _sound; public Sound Sound => _sound;
 
         //State
         public RunState RunState { get; private set; }
@@ -32,6 +36,15 @@ namespace Yuki.NPlayer
         public override void Awake()
         {
             base.Awake();
+
+            if(Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+            }
 
             RunState = new RunState(this, "run");
             JumpState = new JumpState(this, "jump");
@@ -63,17 +76,25 @@ namespace Yuki.NPlayer
         {
             base.Start();
 
-            _damageReceiver = Core.GetCoreComponent<DamageReceiver>();
-            _stats = Core.GetCoreComponent<Stats>();
-            _collisionSenses = Core.GetCoreComponent<CollisionSenses>();
-            _movement = Core.GetCoreComponent<Movement>();
-            _rangeAttack = Core.GetCoreComponent<RangeAttack>();
+            GetCoreComp();
 
             _damageReceiver.OnTakeDamage += OnTakeDamage;
             _stats.OnPlayerDie += OnPlayerDie;
 
             Input = GetComponent<Input>();
             FSM.Initialization(RunState);
+        }
+
+        private void GetCoreComp()
+        {
+            _damageReceiver = Core.GetCoreComponent<DamageReceiver>();
+            _stats = Core.GetCoreComponent<Stats>();
+            _collisionSenses = Core.GetCoreComponent<CollisionSenses>();
+            _movement = Core.GetCoreComponent<Movement>();
+            _rangeAttack = Core.GetCoreComponent<RangeAttack>();
+            _collection = Core.GetCoreComponent<Collection>();
+            _inventory = Core.GetCoreComponent<Inventory>();
+            _sound = Core.GetCoreComponent<Sound>();
         }
     }
 }

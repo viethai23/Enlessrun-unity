@@ -17,14 +17,13 @@ namespace Yuki.NEnemy
         private DamageReceiver _damageReceiver; public DamageReceiver DamageReceiver => _damageReceiver;
         private Stats _stats; public Stats Stats => _stats;
         private PlayerDetecting _playerDetecting; public PlayerDetecting PlayerDetecting => _playerDetecting;
-        private Movement _movement; public Movement Movement => _movement;
         private MeleeAttack _meleeAttack; public MeleeAttack MeleeAttack => _meleeAttack;
         private RangeAttack _rangeAttack; public RangeAttack RangeAttack => _rangeAttack;
+        private Sound _sound; public Sound Sound => _sound;
 
 
         //State
         public IdleState IdleState { get; private set; }
-        public MoveState MoveState { get; private set; }
         public AttackMeleeState AttackMeleeState { get; private set; }
         public AttackRangeState AttackRangeState { get; private set; }
         public DeathState DeathState { get; private set; }
@@ -40,7 +39,6 @@ namespace Yuki.NEnemy
             SpriteRenderer = GetComponent<SpriteRenderer>();
 
             IdleState = new IdleState(this, "idle");
-            MoveState = new MoveState(this, "move");
             AttackRangeState = new AttackRangeState(this, "attackRange");
             AttackMeleeState = new AttackMeleeState(this, "attackMelee");
             DeathState = new DeathState(this, "death");
@@ -50,14 +48,12 @@ namespace Yuki.NEnemy
 
         private void OnTakeDamage()
         {
-            Debug.Log(FSM.CurrentState.GetType());
             if (FSM.CurrentState.GetType() != DetectingPlayerState.GetType() 
                 && FSM.CurrentState.GetType() != AttackMeleeState.GetType()
                 && FSM.CurrentState.GetType() != AttackRangeState.GetType())
             {
                 FSM.ChangeState(HitState);
             }
-            //FSM.ChangeState(HitState);
         }
 
         private void OnEnemyDie()
@@ -75,25 +71,13 @@ namespace Yuki.NEnemy
         {
             base.Start();
 
-            _damageReceiver = Core.GetCoreComponent<DamageReceiver>();
-            _stats = Core.GetCoreComponent<Stats>();
-            _playerDetecting = Core.GetCoreComponent<PlayerDetecting>();
-            _movement = Core.GetCoreComponent<Movement>();
-            _meleeAttack = Core.GetCoreComponent<MeleeAttack>();
-            _rangeAttack = Core.GetCoreComponent<RangeAttack>();
+            GetCoreComp();
 
             _damageReceiver.OnTakeDamage += OnTakeDamage;
             _stats.OnEnemyDie += OnEnemyDie;
 
-            if (_data.CanMove)
-            {
-                FSM.Initialization(MoveState);
-            }
-            else
-            {
-                FSM.Initialization(IdleState);
-            }
-            
+            FSM.Initialization(IdleState);
+
         }
 
         public void SetDangerousMark(bool status)
@@ -101,5 +85,14 @@ namespace Yuki.NEnemy
             _dangerousMark.SetActive(status);
         }
 
+        private void GetCoreComp()
+        {
+            _damageReceiver = Core.GetCoreComponent<DamageReceiver>();
+            _stats = Core.GetCoreComponent<Stats>();
+            _playerDetecting = Core.GetCoreComponent<PlayerDetecting>();
+            _meleeAttack = Core.GetCoreComponent<MeleeAttack>();
+            _rangeAttack = Core.GetCoreComponent<RangeAttack>();
+            _sound = Core.GetCoreComponent<Sound>();
+        }
     }
 }

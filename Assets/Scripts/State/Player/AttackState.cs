@@ -26,6 +26,7 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
+            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.AttackFXSound);
             player.Input.UseAttackInput();
             player.Event.OnAnimationFinished += OnAnimationFinished;
             player.Event.OnAttack += OnAttack;
@@ -64,6 +65,8 @@ namespace Yuki.NPlayer
         public override void Exit()
         {
             base.Exit();
+
+            SoundManager.Instance.StopFXSound(player.Sound.Data.AttackFXSound);
 
             player.Event.OnAnimationFinished -= OnAnimationFinished;
             player.Event.OnAttack -= OnAttack;

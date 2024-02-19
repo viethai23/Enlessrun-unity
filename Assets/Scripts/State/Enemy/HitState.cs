@@ -24,14 +24,7 @@ namespace Yuki.NEnemy
 
         private void OnAnimationFinished()
         {
-            if (enemy.Data.CanMove)
-            {
-                enemy.FSM.ChangeState(enemy.MoveState);
-            }
-            else
-            {
-                enemy.FSM.ChangeState(enemy.IdleState);
-            }
+            enemy.FSM.ChangeState(enemy.IdleState);
         }
 
         public override void Exit()

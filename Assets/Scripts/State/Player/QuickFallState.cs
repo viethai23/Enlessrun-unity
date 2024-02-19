@@ -17,6 +17,8 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
+            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.FastFallFXSound);
+
             player.Movement.SetVelocityZero();
             player.Movement.SetGravity(player.Data.DefaultGravity * player.Data.FastFallGravityMutiplier);
         }
@@ -30,6 +32,14 @@ namespace Yuki.NPlayer
                 player.Movement.SetVelocityY(Mathf.Max(player.Movement.CurrentVelocity.y, -player.Data.MaxFastFallSpeed));
                 PlaceAfterImage();
             }
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+
+            SoundManager.Instance.StopFXSound(player.Sound.Data.FastFallFXSound);
+
         }
     }
 }

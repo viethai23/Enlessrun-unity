@@ -15,6 +15,7 @@ MonoBehaviour:
   _attackDamage: 1
   _attackCooldown: 0.8
   _moveSpeed: 5
+  _value: 4
   _canMove: 0
   _canRangeAttack: 0
   _canMeleeAttack: 1

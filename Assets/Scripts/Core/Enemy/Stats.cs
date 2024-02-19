@@ -22,11 +22,11 @@ namespace Yuki.NEnemy
             }
         }
 
-        private UIManager _uiController;
+        private UI _uiController;
 
         private void Start()
         {
-            _uiController = _core.GetCoreComponent<UIManager>();
+            _uiController = _core.GetCoreComponent<UI>();
             Init();
         }
 

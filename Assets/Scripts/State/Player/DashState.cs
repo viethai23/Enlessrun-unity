@@ -32,6 +32,8 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
+            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.DashFXSound);
+
             player.Input.UseDashInput();
             player.DamageReceiver.CanDamage = false;
             player.Movement.SetVelocityZero();
@@ -78,6 +80,8 @@ namespace Yuki.NPlayer
         public override void Exit()
         {
             base.Exit();
+
+            SoundManager.Instance.StopFXSound(player.Sound.Data.DashFXSound);
 
             player.DamageReceiver.CanDamage = true;
             player.Movement.SetVelocityZero();
