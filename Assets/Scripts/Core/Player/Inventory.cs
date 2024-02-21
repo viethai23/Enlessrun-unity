@@ -10,7 +10,6 @@ namespace Yuki.NPlayer
     public class Inventory : CoreComp
     {
         [SerializeField] private float _startCoinValue;
-        [SerializeField] private float _maxWeapon;
         [SerializeField] private List<PlayerProjectile> _weapons;
         private float _coinValue;
         private int _currentWeapon;
@@ -28,7 +27,6 @@ namespace Yuki.NPlayer
         {
             _coinValue = _startCoinValue;
             _currentWeapon = 0;
-            _uiController.ChangeWeapon(_weapons[_currentWeapon].gameObject.GetComponent<SpriteRenderer>().sprite, _currentWeapon);
             _uiController.SetCoinValue(_coinValue);
         }
 
@@ -38,27 +36,13 @@ namespace Yuki.NPlayer
             _uiController.SetCoinValue(_coinValue);
         }
 
-        public void DecreaseCoinValue(int v)
-        {
-            if(_coinValue < v)
-            {
-                OnCoinNotEnough?.Invoke();
-            }
-            else
-            {
-                _coinValue -= v;
-                _uiController.SetCoinValue(_coinValue);
-            }
-        }
-
         public void AddWeapon(PlayerProjectile projectile)
         {
-            if(_weapons.Contains(projectile) || _weapons.Count >= _maxWeapon)
+            if(_weapons.Contains(projectile))
             {
                 return;
             } 
             _weapons.Add(projectile);
-            _uiController.ChangeWeapon(_weapons[_weapons.Count - 1].gameObject.GetComponent<SpriteRenderer>().sprite, _weapons.Count - 1);
         }
 
         public void ChangeWeapon(int weaponIndex)
@@ -66,7 +50,6 @@ namespace Yuki.NPlayer
             if(weaponIndex >= 0 && weaponIndex < _weapons.Count)
             {
                 _currentWeapon = weaponIndex;
-                _uiController.ChangeWeapon(_weapons[_currentWeapon].gameObject.GetComponent<SpriteRenderer>().sprite, _currentWeapon);
             }
         }
 

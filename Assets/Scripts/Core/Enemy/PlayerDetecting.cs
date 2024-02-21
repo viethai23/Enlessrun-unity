@@ -11,6 +11,8 @@ namespace Yuki.NEnemy
     {
         [SerializeField] private Transform _detectPlayerCheck;
         [SerializeField] private Vector2 _detectPlayerCheckSize;
+        [SerializeField] private Transform _detectPlayerFinishedCheck;
+        [SerializeField] private Vector2 _detectPlayerFinishedCheckSize;
         [SerializeField] private LayerMask _whatIsDamageable;
         public event Action OnPlayerDetecting;
         public event Action OnPlayerDetectingFinished;
@@ -25,11 +27,21 @@ namespace Yuki.NEnemy
         {
             if(!_isDetectedPlayer)
             {
-                bool isPlayerInAttackRange = Physics2D.OverlapBox(_detectPlayerCheck.position, _detectPlayerCheckSize, 0, _whatIsDamageable);
-                if(isPlayerInAttackRange)
+                bool isPlayerInDetectRange = Physics2D.OverlapBox(_detectPlayerCheck.position, _detectPlayerCheckSize, 0, _whatIsDamageable);
+                if(isPlayerInDetectRange)
                 {
                     OnPlayerDetecting?.Invoke();
                     _isDetectedPlayer = true;
+                }
+            }
+
+            if(_isDetectedPlayer )
+            {
+                bool isPlayerInAttackRange = Physics2D.OverlapBox(_detectPlayerFinishedCheck.position, _detectPlayerFinishedCheckSize, 0, _whatIsDamageable);
+                if (isPlayerInAttackRange)
+                {
+                    OnPlayerDetectingFinished?.Invoke();
+                    //_isDetectedPlayer = false;
                 }
             }
         }
@@ -39,6 +51,9 @@ namespace Yuki.NEnemy
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(_detectPlayerCheck.position, _detectPlayerCheckSize);
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(_detectPlayerFinishedCheck.position, _detectPlayerFinishedCheckSize);
         }
 #endif
 

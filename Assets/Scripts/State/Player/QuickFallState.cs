@@ -19,7 +19,7 @@ namespace Yuki.NPlayer
 
             SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.FastFallFXSound);
 
-            player.Movement.SetVelocityZero();
+            //player.Movement.SetVelocityX(player.Data.MoveSpeed);
             player.Movement.SetGravity(player.Data.DefaultGravity * player.Data.FastFallGravityMutiplier);
         }
                                             

@@ -10,6 +10,7 @@ namespace Yuki
     [CreateAssetMenu(fileName = "Player", menuName = "Data/Player")]
     public class PlayerData : Data
     {
+        [SerializeField] private float _moveSpeed = 5.0f;
         [SerializeField] private float _defaultGravity = 5.0f;
         [SerializeField] private float _jumpForce = 12.0f;
         [SerializeField] private int _amountOfJumps = 2;
@@ -33,5 +34,7 @@ namespace Yuki
         public float DashSpeed => _dashSpeed;
         public float DashDuration => _dashDuration;
         public float DashCooldown => _dashCooldown;
+        public float MoveSpeed => _moveSpeed;
+
     }
 }

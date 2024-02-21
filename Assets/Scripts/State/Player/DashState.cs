@@ -84,7 +84,7 @@ namespace Yuki.NPlayer
             SoundManager.Instance.StopFXSound(player.Sound.Data.DashFXSound);
 
             player.DamageReceiver.CanDamage = true;
-            player.Movement.SetVelocityZero();
+            player.Movement.SetVelocityX(player.Data.MoveSpeed);
         }
 
         private bool CheckIfFinishedDash() => Time.time >= _dashStartTime + player.Data.DashDuration;

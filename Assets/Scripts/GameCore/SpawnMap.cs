@@ -23,6 +23,7 @@ namespace Yuki
         {
             _lastPartPosition = _leverPartStart.transform.Find("EndPart").position;
             _spawnedParts.Enqueue(_leverPartStart);
+            _spawnParts.AddRange(Resources.LoadAll<GameObject>("Map"));
         }
 
         private void Update()
@@ -60,6 +61,8 @@ namespace Yuki
         private void SpawnPart(GameObject part)
         {
             GameObject partSpawned = Instantiate(part, _lastPartPosition, Quaternion.identity);
+            Transform ground = partSpawned.transform.Find("Grid/Ground");
+            ground.gameObject.AddComponent<SpawnObject>();
             _spawnedParts.Enqueue(partSpawned);
             _lastPartPosition = partSpawned.transform.Find("EndPart").position;
         }

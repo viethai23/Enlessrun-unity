@@ -23,6 +23,6 @@ MonoBehaviour:
   _fastFallGravityMutiplier: 3
   _maxFastFallSpeed: 30
   _coyoteTime: 0.2
-  _dashSpeed: 15
-  _dashDuration: 0.5
+  _dashSpeed: 30
+  _dashDuration: 0.16
   _dashCooldown: 2.5

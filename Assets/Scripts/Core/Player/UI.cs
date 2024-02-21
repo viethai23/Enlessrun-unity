@@ -13,11 +13,6 @@ namespace Yuki.NPlayer
     {
         [SerializeField] private MultipleIconValueBarTool _healthBar;
         [SerializeField] private TMP_Text _coinValue;
-        [SerializeField] private Transform _inventory;
-
-        private Transform _currentWeapon;
-        private Button _currentWeaponBorder;
-        private Image _currentWeaponIcon;
 
         public void SetCurrentHealth(float v)
         {
@@ -34,14 +29,5 @@ namespace Yuki.NPlayer
             _coinValue.SetText(v + "");
         }
 
-        public void ChangeWeapon(Sprite sp, int weaponIndex)
-        {
-            _currentWeapon = _inventory.GetChild(weaponIndex);
-            _currentWeaponBorder = _currentWeapon.GetChild(1).GetComponent<Button>();
-            _currentWeaponIcon = _currentWeapon.GetChild(1).GetChild(0).GetComponent<Image>();
-
-            _currentWeaponBorder.image.color = Color.red;
-            _currentWeaponIcon.sprite = sp;
-        }
     }
 }

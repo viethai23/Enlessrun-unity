@@ -5,16 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Sliver
-  - Gold
-  - Ruby
-  - YellowDiamond
-  - BlueDiamond
-  - CyaDiamond
-  - GreenDiamond
-  - RedDiamond
   - PlayerProjectile
   - EnemyProjectile
+  - Soul
   layers:
   - Default
   - TransparentFX

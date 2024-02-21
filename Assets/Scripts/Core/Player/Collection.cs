@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace Yuki.NPlayer
     {
         private Inventory _inventory;
         [SerializeField] private List<Collectable> _collectables;
-        [SerializeField] private CoinCollection _coinCollection;
+        [SerializeField] private SoulCollection _coinCollection;
 
         private void Start()
         {

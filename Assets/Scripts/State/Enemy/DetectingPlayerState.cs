@@ -18,31 +18,30 @@ namespace Yuki.NEnemy
         {
             base.Enter();
 
-            _detectingPlayerStartTime = Time.time;
             enemy.SetDangerousMark(true);
+            enemy.PlayerDetecting.OnPlayerDetectingFinished += OnPlayerDetectingFinished;
+            _detectingPlayerStartTime = Time.time;
         }
 
-        public override void LogicUpdate()
+        private void OnPlayerDetectingFinished()
         {
-            base.LogicUpdate();
-
-            if(!isExitingState)
+            enemy.SetDangerousMark(false);
+            if (enemy.Data.CanMeleeAttack && enemy.AttackMeleeState.CanAttack())
             {
-                if(CheckIfDectectingPlayerEnd())
-                {
-                    enemy.SetDangerousMark(false);
-                    if (enemy.Data.CanMeleeAttack && enemy.AttackMeleeState.CanAttack())
-                    {
-                        enemy.FSM.ChangeState(enemy.AttackMeleeState);
-                    }
-                    else if (enemy.Data.CanRangeAttack && enemy.AttackRangeState.CanAttack())
-                    {
-                        enemy.FSM.ChangeState(enemy.AttackRangeState);
-                    }
-                }
+                enemy.FSM.ChangeState(enemy.AttackMeleeState);
+            }
+            else if (enemy.Data.CanRangeAttack && enemy.AttackRangeState.CanAttack())
+            {
+                enemy.FSM.ChangeState(enemy.AttackRangeState);
             }
         }
 
-        private bool CheckIfDectectingPlayerEnd() => Time.time >= _detectingPlayerStartTime + enemy.Data.DetectingPlayerTime;
+        public override void Exit()
+        {
+            base.Exit();
+
+            enemy.PlayerDetecting.OnPlayerDetectingFinished -= OnPlayerDetectingFinished;
+        }
+
     }
 }
