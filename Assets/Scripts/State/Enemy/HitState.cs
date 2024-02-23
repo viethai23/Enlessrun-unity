@@ -18,6 +18,7 @@ namespace Yuki.NEnemy
         {
             base.Enter();
 
+            SoundManager.Instance.CreatePlayFXSound(enemy.Sound.Data.HitFXSound, false);
             enemy.SetDangerousMark(false);
             enemy.Event.OnAnimationFinished += OnAnimationFinished;
         }
@@ -31,6 +32,7 @@ namespace Yuki.NEnemy
         {
             base.Exit();
 
+            SoundManager.Instance.StopFXSound(enemy.Sound.Data.HitFXSound);
             enemy.Event.OnAnimationFinished -= OnAnimationFinished;
         }
     }

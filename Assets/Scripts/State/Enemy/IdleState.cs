@@ -16,6 +16,7 @@ namespace Yuki.NEnemy
         {
             base.Enter();
 
+            enemy.IsHit = false;
             enemy.PlayerDetecting.OnPlayerDetecting += OnPlayerDetecting;
         }
 

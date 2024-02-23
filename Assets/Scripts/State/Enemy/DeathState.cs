@@ -18,6 +18,8 @@ namespace Yuki.NEnemy
         {
             base.Enter();
 
+            Player.Instance.Collection.AddSoul(enemy.transform.position, enemy.Data.Value, enemy.transform.position);
+            SoundManager.Instance.CreatePlayFXSound(enemy.Sound.Data.DeathFXSound, false);
             enemy.SetDangerousMark(false);
 
             enemy.Event.OnAnimationFinished += OnAnimationFinished;
@@ -25,8 +27,8 @@ namespace Yuki.NEnemy
 
         private void OnAnimationFinished()
         {
-            Player.Instance.Collection.AddCoin(enemy.transform.position, enemy.Data.Value);
-
+            
+            SoundManager.Instance.StopFXSound(enemy.Sound.Data.DeathFXSound);
             enemy.gameObject.SetActive(false);
         }
 

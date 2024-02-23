@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3180b9e00e2c65b4ba7a0ff2fb5130b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 96d18b993b4687647ad1b13ff4d55bbe, type: 3}
   m_Name: PlayerSound
   m_EditorClassIdentifier: 
   _runFXSound: {fileID: 8300000, guid: d3ba291ba010f3d4fb5c81799beac974, type: 3}
@@ -18,3 +18,4 @@ MonoBehaviour:
   _hitFXSound: {fileID: 8300000, guid: 463ca51647ac194488c54e005fe3d0be, type: 3}
   _dashFXSound: {fileID: 8300000, guid: a940ec39ffee32843ba6fe05530bc660, type: 3}
   _fastFallFXSound: {fileID: 8300000, guid: 8eb8f3baddb07a440b3709d2006104d7, type: 3}
+  _upgradeWeaponFXSound: {fileID: 8300000, guid: 83c4e783f0295ee479c08ca85501507a, type: 3}

@@ -17,4 +17,4 @@ MonoBehaviour:
   _value: 3
   _canRangeAttack: 1
   _canMeleeAttack: 0
-  _maxDetectTime: 2
+  _maxDetectTime: 0.3

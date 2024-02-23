@@ -14,9 +14,23 @@ namespace Yuki.NEnemy
         {
         }
 
+        public override void Enter()
+        {
+            base.Enter();
+
+            SoundManager.Instance.CreatePlayFXSound(enemy.Sound.Data.AttackFXSound);
+        }
+
         protected override void OnAttack()
         {
             enemy.MeleeAttack.Attack(enemy.Data.AttackDamage);
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+
+            SoundManager.Instance.StopFXSound(enemy.Sound.Data.AttackFXSound);
         }
 
     }

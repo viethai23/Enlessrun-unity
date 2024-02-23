@@ -53,9 +53,9 @@ namespace Yuki
             newSource.outputAudioMixerGroup = sourceToCopyFrom.outputAudioMixerGroup;
         }
 
-        public void CreatePlayFXSound(AudioClip aClip)
+        public void CreatePlayFXSound(AudioClip aClip, bool loop = true)
         {
-            CreateFXSound(aClip);
+            CreateFXSound(aClip, loop);
             PlayFXSound(aClip);
         }
 
@@ -65,7 +65,7 @@ namespace Yuki
             PlayBGSound(aClip);
         }
 
-        private void CreateFXSound(AudioClip aClip)
+        private void CreateFXSound(AudioClip aClip, bool loop)
         {
             if (!FXDict.ContainsKey(aClip.name))
             {
@@ -75,6 +75,7 @@ namespace Yuki
                 FXDict[aClip.name] = obj.GetComponent<AudioSource>();
                 FXDict[aClip.name].gameObject.SetActive(false);
                 CopyProperties(BGMusic, FXDict[aClip.name], aClip, FXVol);
+                FXDict[aClip.name].loop = loop;
                 DontDestroyOnLoad(obj);
             }
         }
@@ -83,7 +84,6 @@ namespace Yuki
         {
             if (!BGDict.ContainsKey(aClip.name))
             {
-                Debug.Log(BGVol);
                 GameObject obj = new GameObject(aClip.name);
                 obj.transform.position = Vector3.zero;
                 obj.AddComponent<AudioSource>();
@@ -125,7 +125,6 @@ namespace Yuki
         {
             if (BGVol > 0)
             {
-                Debug.Log(BGVol);
                 BGDict[aClip.name].gameObject.SetActive(true);
                 BGDict[aClip.name].volume = BGVol;
 

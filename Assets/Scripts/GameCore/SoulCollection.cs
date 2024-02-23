@@ -85,10 +85,13 @@ namespace Yuki
             });
         }
 
-        public void AddCoin(Vector3 collectionCointPostion, int amount)
+        public void AddSoul(Vector3 collectionCointPostion, int amount, bool playSound = true)
         {
-            SoundManager.Instance.PlayOneshotFXSound(_collectSound, 0.7f);
-
+            if(playSound)
+            {
+                SoundManager.Instance.PlayOneshotFXSound(_collectSound, 0.5f);
+            }
+            
             Animate(collectionCointPostion, amount);
         }
     }

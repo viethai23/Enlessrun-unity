@@ -18,9 +18,22 @@ namespace Yuki.NEnemy
         {
             base.Enter();
 
+            SoundManager.Instance.CreatePlayFXSound(enemy.Sound.Data.DetectingPlayerFXSound, false);
             enemy.SetDangerousMark(true);
-            enemy.PlayerDetecting.OnPlayerDetectingFinished += OnPlayerDetectingFinished;
             _detectingPlayerStartTime = Time.time;
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+
+            if(!isExitingState)
+            {
+                if(CheckIfPlayerDetectingFinished())
+                {
+                    OnPlayerDetectingFinished();
+                }
+            }
         }
 
         private void OnPlayerDetectingFinished()
@@ -36,12 +49,13 @@ namespace Yuki.NEnemy
             }
         }
 
+        private bool CheckIfPlayerDetectingFinished() => Time.time > _detectingPlayerStartTime + enemy.Data.MaxDetectTime;
+
         public override void Exit()
         {
             base.Exit();
 
-            enemy.PlayerDetecting.OnPlayerDetectingFinished -= OnPlayerDetectingFinished;
+            SoundManager.Instance.StopFXSound(enemy.Sound.Data.DetectingPlayerFXSound);
         }
-
     }
 }

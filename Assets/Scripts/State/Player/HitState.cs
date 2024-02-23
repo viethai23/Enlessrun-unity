@@ -24,7 +24,7 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
-            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.HitFXSound);
+            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.HitFXSound, false);
 
             player.Movement.SetVelocityX(0);
             //player.Movement.SetGravity(player.Data.FallGravity * player.Data.FastFallGravityMutiplier * 100);

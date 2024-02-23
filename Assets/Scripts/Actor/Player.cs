@@ -15,13 +15,13 @@ namespace Yuki.NPlayer
         //Core component
         private DamageReceiver _damageReceiver; public DamageReceiver DamageReceiver => _damageReceiver;
         private Stats _stats; public Stats Stats => _stats;
-        private CollisionSenses _collisionSenses;
-        public CollisionSenses CollisionSenses => _collisionSenses;
+        private CollisionSenses _collisionSenses; public CollisionSenses CollisionSenses => _collisionSenses;
         private Movement _movement; public Movement Movement => _movement;
         private RangeAttack _rangeAttack; public RangeAttack RangeAttack => _rangeAttack;
         private Collection _collection; public Collection Collection => _collection;
         private Inventory _inventory; public Inventory Inventory => _inventory;
         private Sound _sound; public Sound Sound => _sound;
+        private UI _ui; public UI UI => _ui;
 
         //State
         public RunState RunState { get; private set; }
@@ -58,12 +58,18 @@ namespace Yuki.NPlayer
 
         private void OnTakeDamage()
         {
-            FSM.ChangeState(HitState);
+            if(FSM.CurrentState.GetType() != HitState.GetType())
+            {
+                FSM.ChangeState(HitState);
+            }
         }
 
         private void OnPlayerDie()
         {
-            FSM.ChangeState(DeathState);
+            if (FSM.CurrentState.GetType() != DeathState.GetType())
+            {
+                FSM.ChangeState(DeathState);
+            }
         }
 
         private void OnDisable()
@@ -95,6 +101,7 @@ namespace Yuki.NPlayer
             _collection = Core.GetCoreComponent<Collection>();
             _inventory = Core.GetCoreComponent<Inventory>();
             _sound = Core.GetCoreComponent<Sound>();
+            _ui = Core.GetCoreComponent<UI>();
         }
     }
 }

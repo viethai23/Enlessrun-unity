@@ -32,6 +32,8 @@ namespace Yuki.NEnemy
 
         public SpriteRenderer SpriteRenderer { get; private set; }
 
+        private bool _isHit = false; public bool IsHit { get => _isHit; set => _isHit = value; }
+
         public override void Awake()
         {
             base.Awake();
@@ -50,21 +52,23 @@ namespace Yuki.NEnemy
         {
             if (FSM.CurrentState.GetType() != DetectingPlayerState.GetType() 
                 && FSM.CurrentState.GetType() != AttackMeleeState.GetType()
-                && FSM.CurrentState.GetType() != AttackRangeState.GetType())
+                && FSM.CurrentState.GetType() != AttackRangeState.GetType()
+                && FSM.CurrentState.GetType() != DeathState.GetType()
+                && !_isHit)
             {
                 FSM.ChangeState(HitState);
+                _isHit = true;
             }
         }
 
         private void OnEnemyDie()
         {
-            FSM.ChangeState(DeathState);
-        }
-
-        private void OnDisable()
-        {
-            _damageReceiver.OnTakeDamage -= OnTakeDamage;
-            _stats.OnEnemyDie -= OnEnemyDie;
+            if(FSM.CurrentState.GetType() != DeathState.GetType())
+            {
+                FSM.ChangeState(DeathState);
+                _stats.OnEnemyDie -= OnEnemyDie;
+                _damageReceiver.OnTakeDamage -= OnTakeDamage;
+            }
         }
 
         public override void Start()

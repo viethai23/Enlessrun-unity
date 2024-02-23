@@ -18,7 +18,6 @@ namespace Yuki.NEnemy
         {
             base.Enter();
 
-            SoundManager.Instance.CreatePlayFXSound(enemy.Sound.Data.AttackFXSound);
             enemy.Event.OnAnimationFinished += OnAnimationFinished;
             enemy.Event.OnAttack += OnAttack;
             _attackStartTime = Time.time;
@@ -38,7 +37,6 @@ namespace Yuki.NEnemy
         {
             base.Exit();
 
-            SoundManager.Instance.StopFXSound(enemy.Sound.Data.AttackFXSound);
 
             enemy.Event.OnAnimationFinished -= OnAnimationFinished;
             enemy.Event.OnAttack -= OnAttack;

@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84319a6688be79e4d859e912cd58e815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _floatingDamageNumber: {fileID: 5891009160127691550, guid: 350e9fee581a51c48b1f9067aabc5e6d, type: 3}
 --- !u!61 &6425895856236329972
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -535,37 +536,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: e89e9233f905b8b418d1879f37dca5ab, type: 2}
---- !u!1 &3523644481398641030
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 947295981051588342}
-  m_Layer: 0
-  m_Name: 'DetectPlayerFinishedCheck '
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &947295981051588342
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3523644481398641030}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.33, y: -0.08, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9099548579805790814}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3575141547389742030
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,7 +962,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2680898304293435592}
-  - {fileID: 947295981051588342}
   m_Father: {fileID: 1324202258296228952}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6766881220813490721
@@ -1009,8 +978,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _detectPlayerCheck: {fileID: 2680898304293435592}
   _detectPlayerCheckSize: {x: 10.96, y: 3.8}
-  _detectPlayerFinishedCheck: {fileID: 947295981051588342}
-  _detectPlayerFinishedCheckSize: {x: 0.6, y: 3.8}
   _whatIsDamageable:
     serializedVersion: 2
     m_Bits: 128

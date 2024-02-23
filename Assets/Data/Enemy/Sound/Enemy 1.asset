@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbdaf26f38541a488fcc33b75cf9d68, type: 3}
+  m_Name: Enemy 1
+  m_EditorClassIdentifier: 
+  _attackFXSound: {fileID: 8300000, guid: 140dba855f3698743a403673d4362cac, type: 3}
+  _deathFXSound: {fileID: 8300000, guid: 7c21ee37f077a1b45bc445e25d4993b7, type: 3}
+  _hitFXSound: {fileID: 8300000, guid: 70f59ed43022d6a45b588c89b3508f1b, type: 3}
+  _detectingPlayerFXSound: {fileID: 8300000, guid: 3824f145e1a6d2b448be9a786b0903eb, type: 3}

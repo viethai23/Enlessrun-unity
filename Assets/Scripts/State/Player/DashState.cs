@@ -32,7 +32,9 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
-            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.DashFXSound);
+            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.DashFXSound, false);
+
+            player.UI.UseDash(player.Data.DashCooldown);
 
             player.Input.UseDashInput();
             player.DamageReceiver.CanDamage = false;

@@ -26,7 +26,10 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
-            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.AttackFXSound);
+            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.AttackFXSound, false);
+
+            player.UI.UseAttack(player.Data.AttackCooldown);
+
             player.Input.UseAttackInput();
             player.Event.OnAnimationFinished += OnAnimationFinished;
             player.Event.OnAttack += OnAttack;

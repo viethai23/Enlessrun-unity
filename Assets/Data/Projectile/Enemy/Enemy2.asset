@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603f63c8d3f7a814f8280690b250b3b7, type: 3}
   m_Name: Enemy2
   m_EditorClassIdentifier: 
-  _speed: 10
-  _maxExistTime: 2
+  _speed: 9
+  _maxExistTime: 1.2
+  _damageAdd: 0
+  _damageCollisionVFX: {fileID: 6656589699480111103, guid: 8322f24ee38d62d418f017f21885a586, type: 3}

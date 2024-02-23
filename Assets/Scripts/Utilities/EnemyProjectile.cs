@@ -9,7 +9,7 @@ namespace Yuki.NEnemy
 {
     public class EnemyProjectile : Projectile
     {
-        private GameObject _player;
+        //private GameObject _player;
         public event Action<GameObject> OnHitPlayer;
         [SerializeField] private Vector2 _direction;
 
@@ -34,13 +34,15 @@ namespace Yuki.NEnemy
         {
             if(collision.gameObject.CompareTag("Player"))
             {
-                Debug.Log(collision.transform.name);
+                Vector2 positionHit = new Vector2(_bounds.max.x, UnityEngine.Random.Range(_bounds.min.y, _bounds.max.y));
+                Instantiate(_data.DamageCollisionVFX, positionHit, Quaternion.identity);
                 OnHitPlayer?.Invoke(collision.gameObject);
                 Destroy(gameObject);
             }
             else if(collision.gameObject.CompareTag("PlayerProjectile"))
             {
-                Destroy(gameObject);
+                RB.velocity = -_direction.normalized * _data.Speed;
+                transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg);
             }
         }
     }

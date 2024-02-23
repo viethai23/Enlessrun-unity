@@ -15,14 +15,19 @@ namespace Yuki
         [SerializeField] private LayerMask _whatIsGround;
         private float _fireTimer;
         public Rigidbody2D RB { get; private set; }
+        public Collider2D Collider { get; private set; }
+        protected Bounds _bounds;
 
         public virtual void Awake() 
         {
             RB = GetComponent<Rigidbody2D>();
+            Collider = GetComponent<Collider2D>();
+            _bounds = Collider.bounds;
         }
 
         private void Update()
         {
+            _bounds = Collider.bounds;
             _fireTimer += Time.deltaTime;
 
             if (_fireTimer >= _data.MaxExistTime || Physics2D.OverlapBox(_groundCheck.position, _groundCheckSize, 0, _whatIsGround))

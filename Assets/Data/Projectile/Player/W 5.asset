@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f45b4ada2be2aa4ea0bc10cf42bb49f, type: 3}
+  m_Name: W 5
+  m_EditorClassIdentifier: 
+  _speed: 15
+  _maxExistTime: 0.8
+  _damageAdd: 5
+  _damageCollisionVFX: {fileID: 1543445506716076716, guid: d8c04974916c25845a05c322e91881f6, type: 3}
+  _weaponCollisionVFX: {fileID: 5001907865023445917, guid: eb6bd652bbfaa15449c72c7f8b073f62, type: 3}
+  _weaponCollisionSound: {fileID: 8300000, guid: 912759d93fb4db04e96e2f810b7f411b, type: 3}

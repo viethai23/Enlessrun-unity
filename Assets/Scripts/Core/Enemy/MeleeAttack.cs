@@ -12,6 +12,7 @@ namespace Yuki.NEnemy
         [SerializeField] private Transform _meleeAttackCheck;
         [SerializeField] private Vector2 _meleeAttackCheckSize;
         [SerializeField] private LayerMask _whatIsDamageable;
+        [SerializeField] private GameObject _damageCollisionVFX;
 
         public void Attack(float damage)
         {
@@ -21,6 +22,8 @@ namespace Yuki.NEnemy
             {
                 if (item.TryGetComponent(out IDamageable damageable))
                 {
+                    Vector2 hitPosition = new Vector2(item.bounds.max.x, item.bounds.center.y);
+                    Instantiate(_damageCollisionVFX, hitPosition, Quaternion.identity);
                     damageable.Damage(damage);
                 }
             }

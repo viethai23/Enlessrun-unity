@@ -18,7 +18,7 @@ namespace Yuki.NEnemy
             get => _currentHealth;
             set
             {
-                _currentHealth = Mathf.Clamp(value, 0f, _maxHealth);
+                _currentHealth = Mathf.Clamp(value, 0f, _maxHealth + (GameManager.Instance.Level - 1));
             }
         }
 
@@ -43,8 +43,8 @@ namespace Yuki.NEnemy
 
         public void Init()
         {
-            CurrentHealth = _maxHealth * GameManager.Instance.Level;
-            _uiController.SetMaxHealth(_maxHealth);
+            CurrentHealth = _maxHealth + (GameManager.Instance.Level - 1);
+            _uiController.SetMaxHealth(_maxHealth + (GameManager.Instance.Level - 1));
         }
         public void IncreaseHealth(float amount) => CurrentHealth += amount;
         public void DecreaseHealth(float amount) => CurrentHealth -= amount;

@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69791a8a24363c246850c0ab4bf68eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: db4d3f0c9f3ab8d4383c0eb51fcb0f5b, type: 2}
+  _data: {fileID: 11400000, guid: 81defdebc228585438f8b96c0c5473f2, type: 2}
 --- !u!1 &1218271350484068707
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,37 +192,6 @@ MonoBehaviour:
   OnBeAddToMaxValue:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &2047615221664215614
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6033586759000254670}
-  m_Layer: 0
-  m_Name: DetectPlayerFinishedCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6033586759000254670
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2047615221664215614}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.86, y: 1.17, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 547369276075475316}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3195195549108930550
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +636,7 @@ MonoBehaviour:
   _whatIsDamageable:
     serializedVersion: 2
     m_Bits: 128
+  _damageCollisionVFX: {fileID: 6656589699480111103, guid: 8322f24ee38d62d418f017f21885a586, type: 3}
 --- !u!1 &5620673972073806307
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +891,7 @@ Transform:
   m_GameObject: {fileID: 6027288970655365827}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.86, y: -0.31, z: 0}
+  m_LocalPosition: {x: -0.86, y: 1.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -972,6 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84319a6688be79e4d859e912cd58e815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _floatingDamageNumber: {fileID: 5891009160127691550, guid: 350e9fee581a51c48b1f9067aabc5e6d, type: 3}
 --- !u!61 &4859225585035556708
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1162,7 +1133,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 151807052371671320}
-  - {fileID: 6033586759000254670}
   m_Father: {fileID: 4602539134733529052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3149691842796490537
@@ -1178,9 +1148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detectPlayerCheck: {fileID: 151807052371671320}
-  _detectPlayerCheckSize: {x: 3.45, y: 1}
-  _detectPlayerFinishedCheck: {fileID: 6033586759000254670}
-  _detectPlayerFinishedCheckSize: {x: 0.58, y: 4}
+  _detectPlayerCheckSize: {x: 3.45, y: 4}
   _whatIsDamageable:
     serializedVersion: 2
     m_Bits: 128
