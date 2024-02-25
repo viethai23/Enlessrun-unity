@@ -13,7 +13,7 @@ namespace Yuki
 
         [SerializeField] private AudioSource BGMusic;
         [SerializeField] private AudioSource FXMusic;
-        [SerializeField] [Range(0, 1)] private float FXVol, BGVol;
+        [SerializeField] [Range(0, 1)] public float FXVol, BGVol;
 
         private Dictionary<string, AudioSource> FXDict;
         private Dictionary<string, AudioSource> BGDict;
@@ -33,6 +33,26 @@ namespace Yuki
 
             FXDict = new Dictionary<string, AudioSource>();
             BGDict = new Dictionary<string, AudioSource>();
+
+            if(!PlayerPrefs.HasKey("BGVol"))
+            {
+                PlayerPrefs.SetFloat("BGVol", 1);
+                LoadBGMusic();
+            }
+            else
+            {
+                LoadBGMusic();
+            }
+
+            if (!PlayerPrefs.HasKey("FXVol"))
+            {
+                PlayerPrefs.SetFloat("FXVol", 1);
+                LoadFXMusic();
+            }
+            else
+            {
+                LoadFXMusic();
+            }
         }
 
         static void CopyProperties(AudioSource sourceToCopyFrom, AudioSource newSource, AudioClip aClip, float vol)
@@ -61,6 +81,7 @@ namespace Yuki
 
         public void CreatePlayBGSound(AudioClip aClip)
         {
+            //DisableBGMusic();
             CreateBGSound(aClip);
             PlayBGSound(aClip);
         }
@@ -94,11 +115,11 @@ namespace Yuki
             }
         }
 
-        public void PlayOneshotFXSound(AudioClip aClip, float volumnScale)
+        public void PlayOneshotFXSound(AudioClip aClip)
         {
             if(FXVol > 0)
             {
-                FXMusic.PlayOneShot(aClip, volumnScale);
+                FXMusic.PlayOneShot(aClip, FXVol / 2);
             }
         }
 
@@ -290,6 +311,7 @@ namespace Yuki
             {
                 audioSource.volume = value;
             }
+            SaveBGMusic();
         }
 
         public void ChangeVolumeFXMusic(float value)
@@ -299,8 +321,29 @@ namespace Yuki
             {
                 audioSource.volume = value;
             }
+            SaveFXMusic();
         }
 
         #endregion
+
+        private void SaveBGMusic()
+        {
+            PlayerPrefs.SetFloat("BGVol", BGVol);
+        }
+
+        private void LoadBGMusic()
+        {
+            BGVol = PlayerPrefs.GetFloat("BGVol");
+        }
+
+        private void SaveFXMusic()
+        {
+            PlayerPrefs.SetFloat("FXVol", BGVol);
+        }
+
+        private void LoadFXMusic()
+        {
+            BGVol = PlayerPrefs.GetFloat("FXVol");
+        }
     }
 }

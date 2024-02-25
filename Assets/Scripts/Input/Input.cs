@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Yuki.NPlayer
 {
@@ -20,6 +22,7 @@ namespace Yuki.NPlayer
         private float _jumpInputStartTime;
         private float _dashInputStartTime;
         private float _attackInputStartTime;
+        
 
         private void Update()
         {
@@ -53,6 +56,11 @@ namespace Yuki.NPlayer
 
         public void OnAttackInput(InputAction.CallbackContext context)
         {
+            if(EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             if (context.started)
             {
                 AttackInput = true;
@@ -63,7 +71,7 @@ namespace Yuki.NPlayer
         public void UseJumpInput() => JumpInput = false;
         public void UseDashInput() => DashInput = false;
         public void UseAttackInput() => AttackInput = false;
-
+           
         private void CheckJumpInputHoldTime()
         {
             if(Time.time >= _jumpInputStartTime + _inputHoldTime)

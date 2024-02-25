@@ -12,10 +12,27 @@ namespace Yuki.NPlayer
         [SerializeField] private Transform _groundCheck;
         [SerializeField] private Vector2 _groundCheckSize;
         [SerializeField] private LayerMask _whatIsGround;
+        [SerializeField] private Transform _deathCheck;
+        private Stats _stats;
 
         public bool Grounded
         {
             get => _groundCheck ? Physics2D.OverlapBox(_groundCheck.position, _groundCheckSize, 0, _whatIsGround) : false;
+        }
+
+        private void Start()
+        {
+            _stats = _core.GetCoreComponent<Stats>();
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+
+            if(_groundCheck.transform.position.y < _deathCheck.transform.position.y)
+            {
+                _stats.DecreaseAllHealth();
+            }
         }
 
 #if UNITY_EDITOR

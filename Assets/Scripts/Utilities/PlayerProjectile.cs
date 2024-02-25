@@ -39,7 +39,7 @@ namespace Yuki.NPlayer
                 }
                 else if(collision.gameObject.CompareTag("EnemyProjectile"))
                 {
-                    SoundManager.Instance.PlayOneshotFXSound(_playerData.WeaponCollisionSound, 1);
+                    SoundManager.Instance.PlayOneshotFXSound(_playerData.WeaponCollisionSound);
                     Instantiate(_playerData.WeaponCollisionVFX, transform.position, Quaternion.identity);
                     RB.velocity = Vector2.left * _data.Speed;
                 }

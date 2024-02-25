@@ -12,10 +12,12 @@ namespace Yuki
         [SerializeField] private List<AudioClip> BGSound = new List<AudioClip>();
         [SerializeField] private float _distanceToNextLevel;
         [SerializeField] private float _offsetToIncreaseDistance;
-        private int _level; public int Level => _level;
+        private int _level = 1; public int Level => _level;
         public static GameManager Instance;
 
         private float _currentDistanceToNextLevel;
+        private int _soulValue = 1; public int SoulValue => _soulValue;
+        private bool _startGame = false; public bool IsStartGame => _startGame;
 
         private void Awake()
         {
@@ -27,20 +29,24 @@ namespace Yuki
             {
                 Instance = this;
             }
-            Init();
+            DontDestroyOnLoad(this);
+            Application.targetFrameRate = 60;
+            
         }
 
         private void Update()
         {
-            CheckIfNextLevel();
-            _currentDistanceToNextLevel += Time.deltaTime;
-            Debug.Log(_currentDistanceToNextLevel);
+            if (_startGame)
+            {
+                CheckIfNextLevel();
+                _currentDistanceToNextLevel += Time.deltaTime;
+            }
         }
 
         private void Init()
         {
-            _level = 1;
-            SoundManager.Instance.CreatePlayBGSound(BGSound[_level - 1]);
+            ResetAll();
+            SoundManager.Instance.CreatePlayBGSound(BGSound[UnityEngine.Random.Range(0, BGSound.Count)]);
         }
 
 
@@ -58,7 +64,32 @@ namespace Yuki
             _level++;
             _currentDistanceToNextLevel = 0;
             _distanceToNextLevel += _offsetToIncreaseDistance * _level / 10;
-            Debug.Log("Level " + _level);
+            _soulValue += _level / 10;
         }
-    }
+
+        public void StartGame()
+        {
+            Init();
+            _startGame = true;
+        }
+
+        public void GameOver()
+        {
+            ResetAll();
+        }
+
+        public void StartScene()
+        {
+            SoundManager.Instance.DisableBGMusic();
+            SoundManager.Instance.CreatePlayBGSound(BGSound[0]);
+            ResetAll();
+        }
+
+        private void ResetAll()
+        {
+            _level = 1;
+            _startGame = false;
+            _currentDistanceToNextLevel = 0;
+        }
+    } 
 }

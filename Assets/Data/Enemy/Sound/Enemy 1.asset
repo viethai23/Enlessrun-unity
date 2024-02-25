@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbdaf26f38541a488fcc33b75cf9d68, type: 3}
+  m_Script: {fileID: 11500000, guid: 33b74827b648d1248834026249cb9b31, type: 3}
   m_Name: Enemy 1
   m_EditorClassIdentifier: 
   _attackFXSound: {fileID: 8300000, guid: 140dba855f3698743a403673d4362cac, type: 3}

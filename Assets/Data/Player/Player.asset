@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackDamage: 1
   _attackCooldown: 0.5
-  _moveSpeed: 0
+  _moveSpeed: 5
   _defaultGravity: 5
   _jumpForce: 19
   _amountOfJumps: 1

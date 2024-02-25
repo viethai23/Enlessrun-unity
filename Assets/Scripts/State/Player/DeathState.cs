@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,21 @@ namespace Yuki.NPlayer
         {
             base.Enter();
 
-            Debug.Log("Player die state");
+            SoundManager.Instance.CreatePlayFXSound(player.Sound.Data.DeathFXSound, false);
             player.Movement.SetVelocityZero();
-            
+            player.Event.OnAnimationFinished += OnAnimationFinished;
+        }
+
+        private void OnAnimationFinished()
+        {
+            GameOverUI.Instance.GameOver();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+
+            player.Event.OnAnimationFinished -= OnAnimationFinished;
         }
     }
 }

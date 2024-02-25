@@ -35,11 +35,11 @@
                 {
                     "name": "Attack",
                     "type": "Button",
-                    "id": "af5c8576-9810-4047-aa7c-7af275419e2e",
+                    "id": "4aa1efba-2188-4a71-a964-9a152c81da61",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -177,7 +177,7 @@
                 },
                 {
                     "name": "",
-                    "id": "119f7907-b532-46d3-91c7-7f1b5d780c7c",
+                    "id": "b645956a-173f-4009-acf5-8e05f11c1434",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",

@@ -85,7 +85,7 @@ namespace Yuki.NPlayer
         {
             if (_currentWeapon < _weapons.Count - 1)
             {
-                SoundManager.Instance.PlayOneshotFXSound(_sound.Data.UpgradeWeaponFXSound, 0.5f);
+                SoundManager.Instance.PlayOneshotFXSound(_sound.Data.UpgradeWeaponFXSound);
                 GameObject upgradeGO = Instantiate(_upgradeWeaponVFX, transform.position, Quaternion.identity);
                 upgradeGO.transform.parent = transform;
                 _currentWeapon++;

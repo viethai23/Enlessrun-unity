@@ -67,16 +67,16 @@ namespace Yuki
             _targetPosition = new Vector3(wordspaceTargetPosition.x, wordspaceTargetPosition.y, 0);
         }
 
-        private void CoinAnimate(GameObject coin)
+        private void CoinAnimate(GameObject soul)
         {
             float duration = UnityEngine.Random.Range(_minAnimDuration, _maxAnimDuration);
-            Tweener tweener = coin.transform.DOMove(_targetPosition, duration)
+            Tweener tweener = soul.transform.DOMove(_targetPosition, duration)
                         .SetEase(_easeType)
                         .OnComplete(() =>
                         {
-                            coin.SetActive(false);
-                            _coinQueues.Enqueue(coin);
-                            OnUIChange?.Invoke(1);
+                            soul.SetActive(false);
+                            _coinQueues.Enqueue(soul);
+                            OnUIChange?.Invoke(GameManager.Instance.SoulValue);
                         });
 
             tweener.OnUpdate(() =>
@@ -89,7 +89,7 @@ namespace Yuki
         {
             if(playSound)
             {
-                SoundManager.Instance.PlayOneshotFXSound(_collectSound, 0.5f);
+                SoundManager.Instance.PlayOneshotFXSound(_collectSound);
             }
             
             Animate(collectionCointPostion, amount);

@@ -34,7 +34,7 @@ namespace Yuki
             if(TilemapCollider != null)
             {
                 _tilemapBound = TilemapCollider.bounds;
-                _minXTilemapBound = _tilemapBound.min.x + _rangeToSpawn;
+                _minXTilemapBound = _tilemapBound.min.x;
                 _maxXTilemapBound = _tilemapBound.max.x;
             }
         }
@@ -91,7 +91,7 @@ namespace Yuki
 
             if(!CheckObjectPosition(obj))
             {
-                Destroy(obj);
+                obj.SetActive(false);
             }
         }
 

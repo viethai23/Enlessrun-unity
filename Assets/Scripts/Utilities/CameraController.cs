@@ -16,15 +16,7 @@ namespace Yuki
 
         private float margin = 0.01f;
 
-        void Start()
-        {
-            if (m_Target == null)
-            {
-                m_Target = GameObject.FindGameObjectWithTag("Player").transform;
-            }
-        }
-
-        void Update()
+        void FixedUpdate()
         {
             if (m_Target)
             {

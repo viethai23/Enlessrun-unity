@@ -24,6 +24,7 @@ namespace Yuki.NPlayer
         private UI _ui; public UI UI => _ui;
 
         //State
+        public IdleState IdleState { get; private set; }
         public RunState RunState { get; private set; }
         public JumpState JumpState { get; private set; }
         public FallState FallState { get; private set; }
@@ -32,6 +33,7 @@ namespace Yuki.NPlayer
         public AttackState AttackState { get; private set; }
         public DeathState DeathState { get; private set; }
         public HitState HitState { get; private set; }
+        
 
         public override void Awake()
         {
@@ -46,6 +48,7 @@ namespace Yuki.NPlayer
                 Instance = this;
             }
 
+            IdleState = new IdleState(this, "idle");
             RunState = new RunState(this, "run");
             JumpState = new JumpState(this, "jump");
             FallState = new FallState(this, "fall");
@@ -69,13 +72,9 @@ namespace Yuki.NPlayer
             if (FSM.CurrentState.GetType() != DeathState.GetType())
             {
                 FSM.ChangeState(DeathState);
+                _damageReceiver.OnTakeDamage -= OnTakeDamage;
+                _stats.OnPlayerDie -= OnPlayerDie;
             }
-        }
-
-        private void OnDisable()
-        {
-            _damageReceiver.OnTakeDamage -= OnTakeDamage;
-            _stats.OnPlayerDie -= OnPlayerDie;
         }
 
         public override void Start()
@@ -88,7 +87,7 @@ namespace Yuki.NPlayer
             _stats.OnPlayerDie += OnPlayerDie;
 
             Input = GetComponent<Input>();
-            FSM.Initialization(RunState);
+            FSM.Initialization(IdleState);
         }
 
         private void GetCoreComp()

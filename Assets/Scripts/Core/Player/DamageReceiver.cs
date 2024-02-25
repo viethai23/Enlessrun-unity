@@ -34,7 +34,6 @@ namespace Yuki.NPlayer
 
         public void Damage(float damage)
         {
-            Debug.Log("Player is attacked!");
             if(_canDamage)
             {
                 if(_stats.CurrentHealth > 0)

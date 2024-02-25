@@ -11,12 +11,16 @@ namespace Yuki.NPlayer
     public class Collection : CoreComp
     {
         private Inventory _inventory;
+        private Stats _stats;
+        private Sound _sound;
         [SerializeField] private SoulCollection _soulCollection;
         [SerializeField] private DamageNumber _floatingSoulNumber;
 
         private void Start()
         {
             _inventory = _core.GetCoreComponent<Inventory>();
+            _stats = _core.GetCoreComponent<Stats>();
+            _sound = _core.GetCoreComponent<Sound>();
 
             _soulCollection.OnUIChange += _inventory.IncreaseSoulValue;
 
@@ -27,6 +31,12 @@ namespace Yuki.NPlayer
             if (collision.gameObject.CompareTag("Soul"))
             {
                 _soulCollection.AddSoul(collision.transform.position, 1);
+                Destroy(collision.gameObject);
+            }
+            else if(collision.gameObject.CompareTag("Life"))
+            {
+                _stats.IncreaseHealth(1);
+                SoundManager.Instance.PlayOneshotFXSound(_sound.Data.HealingFXSound);
                 Destroy(collision.gameObject);
             }
         }
