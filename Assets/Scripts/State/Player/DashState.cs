@@ -37,6 +37,7 @@ namespace Yuki.NPlayer
             player.UI.UseDash(player.Data.DashCooldown);
 
             player.Input.UseDashInput();
+            player.DamageReceiver.SetColliderStatus(false);
             player.DamageReceiver.CanDamage = false;
             player.Movement.SetVelocityZero();
             player.Movement.SetGravity(0.0f);
@@ -85,6 +86,7 @@ namespace Yuki.NPlayer
 
             SoundManager.Instance.StopFXSound(player.Sound.Data.DashFXSound);
 
+            player.DamageReceiver.SetColliderStatus(true);
             player.DamageReceiver.CanDamage = true;
             player.Movement.SetVelocityX(player.Data.MoveSpeed);
         }

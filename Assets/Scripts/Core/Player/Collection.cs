@@ -28,12 +28,12 @@ namespace Yuki.NPlayer
 
         private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Soul"))
+            if (collision.gameObject.CompareTag(Collectable.Soul.ToString()))
             {
                 _soulCollection.AddSoul(collision.transform.position, 1);
                 Destroy(collision.gameObject);
             }
-            else if(collision.gameObject.CompareTag("Life"))
+            else if(collision.gameObject.CompareTag(Collectable.Life.ToString()))
             {
                 _stats.IncreaseHealth(1);
                 SoundManager.Instance.PlayOneshotFXSound(_sound.Data.HealingFXSound);

@@ -37,5 +37,10 @@ namespace Yuki.NEnemy
                 OnTakeDamage?.Invoke();
             }
         }
+
+        public void DisableCollider()
+        {
+            Collider.enabled = false;
+        }
     }
 }

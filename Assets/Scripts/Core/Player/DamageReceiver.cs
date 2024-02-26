@@ -46,5 +46,10 @@ namespace Yuki.NPlayer
                 OnTakeDamage?.Invoke();
             }
         }
+
+        public void SetColliderStatus(bool status)
+        {
+            Collider.enabled = status;
+        }
     }
 }

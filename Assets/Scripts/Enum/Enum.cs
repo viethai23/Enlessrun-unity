@@ -8,6 +8,7 @@ namespace Yuki
 {
     public enum Collectable
     {
-        Soul = 1
+        Soul,
+        Life
     }
 }

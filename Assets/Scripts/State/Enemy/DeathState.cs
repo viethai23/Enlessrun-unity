@@ -18,6 +18,7 @@ namespace Yuki.NEnemy
         {
             base.Enter();
 
+            enemy.DamageReceiver.DisableCollider();
             Player.Instance.Collection.AddSoul(enemy.transform.position, enemy.Data.Value, enemy.transform.position);
             SoundManager.Instance.CreatePlayFXSound(enemy.Sound.Data.DeathFXSound, false);
             enemy.SetDangerousMark(false);
