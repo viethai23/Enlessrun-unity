@@ -35,12 +35,12 @@ namespace Yuki.NPlayer
             }
         }
 
-#if UNITY_EDITOR
+
         protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(_groundCheck.position, _groundCheckSize);
         }
     }
-#endif
+
 }
